@@ -12,22 +12,11 @@ maps_dir = os.path.join(os.path.dirname(__file__), 'Maps/')
 
 st.title("Weather Balloon x Bird Geolocation Comparator")
 
-if 'last_refresh' not in st.session_state:
-    st.session_state.last_refresh = datetime.datetime.now()
-
-# Update maps once per hour
-if 'last_hour' not in st.session_state:
-    st.session_state.last_hour = -1
-
-hour = datetime.datetime.now().hour
-if hour != st.session_state.last_hour:
-    if os.path.isdir(maps_dir):
-        for f in os.listdir(maps_dir):
-            os.remove(os.path.join(maps_dir, f))
-    with st.spinner("Loading Map Data (this may take several minutes)..."):
-        Plot_Coord.plot_coord()
-    st.session_state.last_hour = hour
-    st.success(f"Maps updated for hour {hour}")
+if os.path.isdir(maps_dir):
+    for f in os.listdir(maps_dir):
+        os.remove(os.path.join(maps_dir, f))
+with st.spinner("Loading Map Data (this may take several minutes)..."):
+    Plot_Coord.plot_coord()
 
 maps = os.listdir(maps_dir) if os.path.isdir(maps_dir) else []
 if maps:
@@ -52,8 +41,3 @@ if maps:
     st.image(Image.open(img_path))
 else:
     st.info("No maps found.")
-
-now = datetime.datetime.now()
-if (now - st.session_state.last_refresh).seconds >= 60:
-    st.session_state.last_refresh = now
-    st.experimental_rerun()
