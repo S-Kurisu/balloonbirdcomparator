@@ -1,4 +1,4 @@
-# balloonbirdcomparator
+# Weather Balloon x Bird Geolocation Comparator
 A Python program that compares weather balloon data with common bird species locations.
 The program combines a weather balloon dataset with a bird location dataset in order to create maps spanning the last 24 hours.
 These maps contain data points of the weather balloons and the datapoints of common bird species within the last day.
