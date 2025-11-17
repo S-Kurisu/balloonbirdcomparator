@@ -51,7 +51,9 @@ if maps:
     img_path = os.path.join(maps_dir, maps[st.session_state.curr])
     st.image(Image.open(img_path))
 else:
-    st.info("No maps available yet.")
+    st.info("No maps found.")
 
-if (datetime.datetime.now() - datetime.datetime.now().replace(minute=0, second=0, microsecond=0)).seconds >= 60:
+now = datetime.datetime.now()
+if (now - st.session_state.last_refresh).seconds >= 60:
+    st.session_state.last_refresh = now
     st.experimental_rerun()
