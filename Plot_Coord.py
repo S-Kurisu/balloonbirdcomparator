@@ -15,12 +15,15 @@ from concurrent.futures import ThreadPoolExecutor
 import geopandas as gpd
 import pandas as pd
 import json
+from dotenv import load_dotenv
 import requests
 import matplotlib.pyplot as plt
 from shapely.geometry import Point
 import imageio
 import os
 from datetime import datetime, timedelta
+
+load_dotenv()
 
 def plot_coord():
     #creating res folder for easy access
@@ -30,7 +33,7 @@ def plot_coord():
         os.makedirs(maps_dir)
 
     #bird section
-    API_KEY = "kif62ob8m6fn"
+    API_KEY = os.getenv("API_KEY")
     bird_list_data = []
 
     #found a list of eBird region codes and had chatgpt make me a list of strings
