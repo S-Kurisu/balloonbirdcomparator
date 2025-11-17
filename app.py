@@ -5,7 +5,6 @@ import datetime
 import streamlit as st
 from PIL import Image
 import Plot_Coord
-from streamlit_autorefresh import st_autorefresh
 import time
 
 # Directories
@@ -13,8 +12,8 @@ maps_dir = os.path.join(os.path.dirname(__file__), 'Maps/')
 
 st.title("Weather Balloon x Bird Geolocation Comparator")
 
-# Auto-refresh every 60 seconds
-st_autorefresh(interval=60*1000, limit=-1, key="refresh")
+if 'last_refresh' not in st.session_state:
+    st.session_state.last_refresh = datetime.datetime.now()
 
 # Update maps once per hour
 if 'last_hour' not in st.session_state:
@@ -53,3 +52,6 @@ if maps:
     st.image(Image.open(img_path))
 else:
     st.info("No maps available yet.")
+
+if (datetime.datetime.now() - datetime.datetime.now().replace(minute=0, second=0, microsecond=0)).seconds >= 60:
+    st.experimental_rerun()
