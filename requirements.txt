@@ -1,0 +1,14 @@
+streamlit
+Pillow
+geopandas
+pandas
+numpy
+matplotlib
+shapely
+fiona
+pyproj
+rtree
+six
+imageio
+requests
+python-dotenv
