@@ -9,7 +9,7 @@ st.title("Weather Balloon x Bird Geolocation Comparator")
 
 #dynamic 'live' updating
 if 'last_hour' not in st.session_state:
-    st.session_state.last_hour = 0
+    st.session_state.last_hour = -1
 
 current_hour = datetime.datetime.now().hour
 
@@ -26,7 +26,8 @@ if current_hour != st.session_state.last_hour:
     st.success(f"Maps updated for hour {current_hour}")
 
 maps = sorted(os.listdir(maps_dir)) if os.path.isdir(maps_dir) else []
-
+for m in maps:
+    st.write(m)
 if maps:
     if 'curr' not in st.session_state:
         st.session_state.curr = 0
