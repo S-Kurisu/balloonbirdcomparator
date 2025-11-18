@@ -27,8 +27,6 @@ if current_hour != st.session_state.last_hour:
 
 maps = sorted(os.listdir(maps_dir)) if os.path.isdir(maps_dir) else []
 
-for m in range(len(maps)):
-    st.write(m, maps[m])
 if maps:
     if 'curr' not in st.session_state:
         st.session_state.curr = 0
@@ -43,9 +41,9 @@ if maps:
             st.session_state.curr += 1
 
     # Buttons
-    col1, col2 = st.columns(2)
+    col1, col3 = st.columns(3)
     col1.button("Previous Hour", on_click=next_map)
-    col2.button("Next Hour", on_click=prev_map)
+    col3.button("Next Hour", on_click=prev_map)
     
     img_path = os.path.join(maps_dir, maps[st.session_state.curr])
     st.write(st.session_state.curr)
