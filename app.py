@@ -9,7 +9,7 @@ st.title("Weather Balloon x Bird Geolocation Comparator")
 
 #dynamic 'live' updating
 if 'last_hour' not in st.session_state:
-    st.session_state.last_hour = -1
+    st.session_state.last_hour = 0
 
 current_hour = datetime.datetime.now().hour
 
