@@ -22,6 +22,7 @@ from shapely.geometry import Point
 import imageio
 import os
 from datetime import datetime, timedelta
+from json.decoder import JSONDecodeError
 
 load_dotenv()
 
