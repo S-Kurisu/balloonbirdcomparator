@@ -76,8 +76,10 @@ def plot_coord():
         headers = {"X-eBirdApiToken": API_KEY}
             
         birdres = requests.get(eBird_url, headers = headers, params = params)
-        bird_data = birdres.json()
-        if not bird_data:
+        try:
+            bird_data = birdres.json()
+        except JSONDecodeError:
+            print("Invalid JSON from eBird:", birdres.text)
             return []
         print(bird_data)
         #convert to list comprehension
@@ -132,7 +134,11 @@ def plot_coord():
         balloonData = 'https://a.windbornesystems.com/treasure/'+balloon_time+'.json'
         print("balloon data",balloonData)
         req = requests.get(balloonData)
-        coords = req.json()
+        try:
+            coords = req.json()
+        except JSONDecodeError:
+            print("Invalid JSON from Windborne Systems:", balloon_time)
+            return []
 
         #create dataframe with coords
         #0 = latitude and 1 = longitude from balloon .json file
@@ -159,6 +165,7 @@ def plot_coord():
 
         plt.savefig(maps_dir + str(balloon_time) + ".jpg", dpi=200, bbox_inches='tight')
         plt.close(fig)
+plot_coord()
 #----------------abandoned gif functionality-----------------------
 #create gif
 #images = []
