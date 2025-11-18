@@ -49,5 +49,9 @@ if maps:
     
     img_path = os.path.join(maps_dir, maps[st.session_state.curr])
     st.image(Image.open(img_path))
+    st.write("Notes:")
+    st.write("Red dots notate weather balloon locations.")
+    st.write("Purple dots notate locations of common bird species from eBird.")
+    st,write("eBird bird data is user submitted.")
 else:
     st.info("No maps found.")
