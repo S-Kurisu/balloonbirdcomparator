@@ -161,7 +161,7 @@ def plot_coord():
         if filtered_birds_by_hour:
             bird_gdf.plot(ax=ax, color='purple', markersize=10)
 
-        ax.set_title("Weather Balloons at " + str(target_time.hour)+":00", fontsize=16)
+        ax.set_title("Weather Balloons at " + str(target_hours_date) + str(target_time.hour)+":00 UTC", fontsize=16)
 
         plt.savefig(maps_dir + str(balloon_time) + ".jpg", dpi=200, bbox_inches='tight')
         plt.close(fig)
