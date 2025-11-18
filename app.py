@@ -48,7 +48,6 @@ if maps:
     col2.button("Next Hour", on_click=prev_map)
     
     img_path = os.path.join(maps_dir, maps[st.session_state.curr])
-    st.write(st.session_state.curr)
     st.image(Image.open(img_path))
 else:
     st.info("No maps found.")
