@@ -1,8 +1,10 @@
+#https://docs.streamlit.io/develop/
 import os
 import datetime
 import streamlit as st
 from PIL import Image
 import Plot_Coord
+import time
 
 maps_dir = os.path.join(os.path.dirname(__file__), 'Maps/')
 st.title("Weather Balloon x Bird Geolocation Comparator")
@@ -40,10 +42,10 @@ if maps:
         if st.session_state.curr < len(maps) - 1:
             st.session_state.curr += 1
 
-    # Buttons
-    col1, col3 = st.columns(3)
+    #Buttons
+    col1, col2 = st.columns(2)
     col1.button("Previous Hour", on_click=next_map)
-    col3.button("Next Hour", on_click=prev_map)
+    col2.button("Next Hour", on_click=prev_map)
     
     img_path = os.path.join(maps_dir, maps[st.session_state.curr])
     st.write(st.session_state.curr)
