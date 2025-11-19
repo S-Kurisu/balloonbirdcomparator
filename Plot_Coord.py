@@ -153,7 +153,7 @@ def plot_coord():
             bird_df['geo'] = [Point(xy) for xy in zip(bird_df['lng'], bird_df['lat'])]
             bird_gdf = gpd.GeoDataFrame(bird_df, geometry = 'geo', crs='EPSG:4326')
                     
-        fig, ax = plt.subplots(figsize=(8, 6), dpi=200)
+        fig, ax = plt.subplots(figsize=(12, 8), dpi=300)
 
         world.plot(ax=ax, color='lightblue', edgecolor='black', linewidth=0.5)
 
@@ -164,13 +164,7 @@ def plot_coord():
 
         ax.set_title("Weather Balloons at " + str(target_time.date()) + " " + str(target_time.hour)+":00 UTC", fontsize=16)
 
-        plt.savefig(maps_dir + str(balloon_time) + ".jpg", dpi=200, bbox_inches='tight')
+        plt.savefig(maps_dir + str(balloon_time) + ".jpg", dpi=300, bbox_inches='tight')
         plt.close(fig)
-#----------------abandoned gif functionality-----------------------
-#create gif
-#images = []
-#for map in maps:
-#    images.append(imageio.v2.imread(map))
-#imageio.mimsave(script_dir+'/1 day map.gif', images, duration=len(maps)*500, loop=0)
 
 

@@ -6,6 +6,7 @@ from PIL import Image
 import Plot_Coord
 import time
 
+st.set_page_config(layout="wide")
 maps_dir = os.path.join(os.path.dirname(__file__), 'Maps/')
 st.title("Weather Balloon x Bird Geolocation Comparator")
 
@@ -16,7 +17,7 @@ if 'last_hour' not in st.session_state:
 current_hour = datetime.datetime.now().hour
 
 if current_hour != st.session_state.last_hour:
-    with st.spinner("Loading Current Hour's Map Data (this may take several minutes)..."):
+    with st.spinner("Loading Current Hour's Map Data (this may take 5+ minutes)..."):
         # Clear old maps
         if os.path.isdir(maps_dir):
             for f in os.listdir(maps_dir):
@@ -48,10 +49,13 @@ if maps:
     col2.button("Next Hour", on_click=prev_map)
     
     img_path = os.path.join(maps_dir, maps[st.session_state.curr])
-    st.image(Image.open(img_path))
+    st.image(Image.open(img_path), width = 900)
     st.write("Notes:")
     st.write("Red dots notate weather balloon locations.")
     st.write("Purple dots notate locations of common bird species from eBird.")
-    st.write("eBird bird data is user submitted.")
+    st.write("eBird bird data is user submitted so as a result, certain hours may lack user submitted bird data.")
+    st.write("Refining these two datasets would allow for tracking of bird migration behavior in relation to weather patterns.")
+    st.write("For example, inferences could be made about how birds react to different kinds of weathers or how the paths of weather balloons overlap with birds (i.e. wind currents).")
+    st.write("Additionally, with more data from the weather balloons - such as atmospheric data, patterns can be established about common bird pathing based on the time of day.")
 else:
     st.info("No maps found.")
