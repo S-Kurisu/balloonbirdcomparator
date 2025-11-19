@@ -17,7 +17,7 @@ if 'last_hour' not in st.session_state:
 current_hour = datetime.datetime.now().hour
 
 if current_hour != st.session_state.last_hour:
-    with st.spinner("Loading Current Hour's Map Data (this may take 5+ minutes)..."):
+    with st.spinner("Loading Current Hour's Map Data (this may take up to several minutes)..."):
         # Clear old maps
         if os.path.isdir(maps_dir):
             for f in os.listdir(maps_dir):
